@@ -10,32 +10,34 @@ namespace GenericRepository
 
         public void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entities.Add(entity);
         }
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entities.Remove(entity);
         }
 
         public void Edit(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entities.Entry(entity).State=EntityState.Modified;
         }
 
         public IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            IQueryable<TEntity> query = _entities.Set<TEntity>().Where(predicate);
+            return query;
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            IQueryable<TEntity> query = _entities.Set<TEntity>();
+            return query;
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _entities.SaveChanges();
         }
     }
 }
