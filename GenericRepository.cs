@@ -7,6 +7,12 @@ namespace GenericRepository
     public abstract class GenericRepository<CEntity, TEntity> : IGenericRepository<TEntity> where TEntity : class where CEntity : DbContext, new()
     {
         private CEntity _entities = new CEntity();
+        public CEntity Context
+        {
+            get { return _entities;}
+            set { _entities = value;}
+        }
+        
 
         public void Add(TEntity entity)
         {
